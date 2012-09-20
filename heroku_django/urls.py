@@ -6,7 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'heroku_django.views.home', name='home'),
+    url(r'^$', 'django.views.generic.simple.direct_to_template', {'template': 'static/index.html'}),
     # url(r'^heroku_django/', include('heroku_django.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
