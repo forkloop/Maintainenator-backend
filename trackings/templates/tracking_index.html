@@ -1,0 +1,9 @@
+{% if trackings_list %}
+    <ul>
+        {% for tracking in trackings_list %}
+            <li><em>{{ tracking.description }}</em></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p> No trackings yet.</p>
+{% endif %}

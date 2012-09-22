@@ -1,2 +1,4 @@
+*.vim
 venv
 *.pyc
+trackings/photos/
