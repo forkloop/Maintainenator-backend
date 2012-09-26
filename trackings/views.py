@@ -24,7 +24,7 @@ def new(request):
         form = TrackingForm(request.POST, request.FILES)
         if form.is_valid():
             tracking = form.save()
-            logger.debug('Processing ' + tracking.pk)
+            logger.debug('Processing ' + str(tracking.pk))
             return HttpResponseRedirect(reverse('trackings.views.show', args=[tracking.pk]))
     else:
         form = TrackingForm()
