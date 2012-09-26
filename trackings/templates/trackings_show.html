@@ -1,0 +1,9 @@
+{% extends "trackings_basic.html" %}
+
+{% block title %} Tracking Information {% endblock %}
+
+{% block wrap %}
+    <p>{{ tracking.description }}</p>
+    <img src="{{ tracking.photo }}" />
+    <p>{{ tracking.location }}</p>
+{% endblock %}
