@@ -5,4 +5,4 @@ class TrackingResource(ModelResource):
     class Meta:
         queryset = Tracking.objects.all()
         resource_name = 'trackings'
-        # authorization = Authorization()
+        authorization = Authorization()
