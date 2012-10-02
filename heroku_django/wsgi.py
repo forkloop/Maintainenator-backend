@@ -26,3 +26,8 @@ application = get_wsgi_application()
 # Apply WSGI middleware here.
 # from helloworld.wsgi import HelloWorldApplication
 # application = HelloWorldApplication(application)
+from barrel import cooper
+
+REALM = 'PRIVATE'
+USERS = [('forkloop', '494718489')]
+application = cooper.basicauth(users=USERS, realm=REALM)(get_wsgi_application())
