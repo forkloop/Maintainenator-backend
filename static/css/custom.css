@@ -3,8 +3,15 @@ body {
     padding-bottom: 40px;
 }
 
+.report-wrap {
+    margin: 20px auto;
+    padding: 20px 30px;
+    box-shadow: -6px 6px 20px rgba(10, 20, 30, 0.4);
+}
+
 .report {
-    width: 800px;
+    float: left;
+    width: 600px;
     margin: auto;
     padding: 20px 0;
     box-shadow: -7px 0px 16px rgba(10, 20, 30, 0.5);
@@ -12,4 +19,21 @@ body {
 
 .report-inner {
     text-align: center;
+}
+
+.report-location {
+    color: #0099CC;
+}
+
+.report-map {
+    float: right;
+    width: 420px;
+}
+
+.map {
+    text-align: center;
+}
+
+.report-foot {
+    clear: both;
 }

@@ -3,14 +3,25 @@
 {% block title %} Tracking {{ tracking.id }} {% endblock %}
 
 {% block container %}
+<div class="report-wrap">
     <div class="report">
         <div class="report-inner">
         <h2>{{ tracking.description }}</h2>
+        <div class="report-location">
+            <p><span>{{ tracking.location }}</span></p>
+        </div>
         <img src="{{ tracking.photo }}" />
-        <p>{{ tracking.location }}</p>
     </div>
     </div>
-    <p>
-        <a href="{% url tracking:tracking-list %}"> All trackings </a>
-    </p>
+    <div class="report-map">
+        <div class="map">
+            <img src="http://maps.googleapis.com/maps/api/staticmap?center=-15.800513,-47.91378&zoom=20&size=400x400&sensor=false">
+        </div>
+    </div>
+    <div class="report-foot">
+        <p>
+            <a href="{% url tracking:tracking-list %}"> All trackings </a>
+        </p>
+    </div>
+    </div>
 {% endblock %}
