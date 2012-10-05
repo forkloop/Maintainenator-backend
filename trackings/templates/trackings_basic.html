@@ -13,11 +13,11 @@
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class=brand href="#">Maintain-e-nator</a>
+                    <a class=brand href="{% url index %}">Maintain-e-nator</a>
                     <div class="nav-collapse collapse">
                         <ul class="nav">
-                            <li><a href="{% url index %}">Home</a></li>
-                            <li><a href="#">About</a></li>
+                            <li><a href="{% url admin:index %}">Admin</a></li>
+                            <li><a href="{% url about %}">About</a></li>
                         </ul>
                     </div>
                 </div>
