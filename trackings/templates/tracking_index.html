@@ -1,9 +1,15 @@
+{% extends "trackings_basic.html" %}
+
+{% block title %} All trackings {% endblock %}
+
+{% block container %}
 {% if trackings_list %}
     <ul>
         {% for tracking in trackings_list %}
-            <li><em>{{ tracking.description }}</em></li>
+        <li><a href="{% url tracking:tracking-detail tracking.id %}"><em>{{ tracking.description }}</em>, {{ tracking.location }}</a></li>
         {% endfor %}
     </ul>
 {% else %}
-    <p> No trackings yet.</p>
+<p> No trackings yet.</p>
 {% endif %}
+{% endblock %}

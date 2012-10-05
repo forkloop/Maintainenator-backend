@@ -52,7 +52,7 @@ MEDIA_URL = '/photos/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = root + '/../static/'
+STATIC_ROOT = root + '/../collect_static/'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -63,6 +63,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    root + '/../static/',
 )
 
 # List of finder classes that know how to find static files in
@@ -86,6 +87,7 @@ TEMPLATE_LOADERS = (
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.static',
 )
 
 MIDDLEWARE_CLASSES = (

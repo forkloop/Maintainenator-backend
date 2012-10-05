@@ -8,9 +8,9 @@ logger = logging.getLogger('mode.debug')
 logger.debug(settings.MEDIA_URL)
 
 urlpatterns = patterns('trackings.views',
-        url(r'^$', 'index'),
+        url(r'^$', 'index', name='tracking-list'),
         url(r'^new/$', 'new'),
-        url(r'^(?P<tracking_id>\d+)/$', 'show', name='tracking_detail'),
+        url(r'^(?P<tracking_id>\d+)/$', 'show', name='tracking-detail'),
 )
 
 urlpatterns += patterns('', 

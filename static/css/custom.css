@@ -1,0 +1,15 @@
+body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+.report {
+    width: 800px;
+    margin: auto;
+    padding: 20px 0;
+    box-shadow: -7px 0px 16px rgba(10, 20, 30, 0.5);
+}
+
+.report-inner {
+    text-align: center;
+}

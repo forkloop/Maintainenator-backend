@@ -1,9 +1,16 @@
 {% extends "trackings_basic.html" %}
 
-{% block title %} Tracking Information {% endblock %}
+{% block title %} Tracking {{ tracking.id }} {% endblock %}
 
-{% block wrap %}
-    <p>{{ tracking.description }}</p>
-    <img src="{{ tracking.photo }}" />
-    <p>{{ tracking.location }}</p>
+{% block container %}
+    <div class="report">
+        <div class="report-inner">
+        <h2>{{ tracking.description }}</h2>
+        <img src="{{ tracking.photo }}" />
+        <p>{{ tracking.location }}</p>
+    </div>
+    </div>
+    <p>
+        <a href="{% url tracking:tracking-list %}"> All trackings </a>
+    </p>
 {% endblock %}
