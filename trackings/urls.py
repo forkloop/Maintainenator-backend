@@ -5,8 +5,6 @@ import logging
 
 logger = logging.getLogger('mode.debug')
 
-logger.debug(settings.MEDIA_URL)
-
 urlpatterns = patterns('trackings.views',
         url(r'^$', 'index', name='index'),
         url(r'^new/$', 'new'),
@@ -14,6 +12,6 @@ urlpatterns = patterns('trackings.views',
 )
 
 urlpatterns += patterns('', 
-        ##url(r'^(?P<tracking_id>\d+)/photos/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+        #url(r'^(?P<tracking_id>\d+)/photos/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
         url(r'^\d+/trackings/photos/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
 )

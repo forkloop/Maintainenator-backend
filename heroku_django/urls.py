@@ -1,3 +1,4 @@
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls import patterns, include, url
 from django.conf import settings
 from trackings.api import TrackingResource
@@ -25,3 +26,9 @@ urlpatterns = patterns('',
     # api
     url(r'^api/', include(v1_api.urls)),
 )
+
+if settings.DEBUG:
+    urlpatterns += staticfiles_urlpatterns()
+#urlpatterns += patterns('',
+        #url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
+#)
