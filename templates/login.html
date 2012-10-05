@@ -1,0 +1,24 @@
+{% extends 'trackings_basic.html' %}
+
+{% block title %} Login {% endblock %}
+
+{% block container %}
+<h1> Login </h1>
+
+{% if error_msg %}
+<div class="alert alert-error">
+    <h3>{{ error_msg }}</h3>
+</div>
+{% endif %}
+
+<div class="login-wrap">
+    <form action="{% url login %}" method="post">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" required="required"><br/>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required="required"><br/>
+        <input type="submit" value="Login" class="btn">
+    </form>
+</div>
+{% endblock %}

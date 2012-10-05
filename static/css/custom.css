@@ -3,10 +3,37 @@ body {
     padding-bottom: 40px;
 }
 
+h1, h2, h3 {
+    text-align: center;
+}
+
+.navbar .brand {
+    color: #000000;
+    font-weight: bold;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 30px rgba(255, 255, 255, 0.125);
+}
+
+.navbar .loginout {
+    float: right;
+    padding: 10px 20px;
+    font-weight: bold;
+}
+
 .report-wrap {
     margin: 20px auto;
     padding: 20px 30px;
     box-shadow: -6px 6px 20px rgba(10, 20, 30, 0.4);
+}
+
+.login-wrap {
+    margin: 20px auto;
+    padding: 20px;
+    width: 220px;
+    box-shadow: 1px 2px 3px rgba(10, 20, 30, 0.4);
+}
+
+.login-wrap .btn {
+    float: right;
 }
 
 .report {

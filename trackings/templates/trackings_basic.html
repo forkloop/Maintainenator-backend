@@ -13,13 +13,18 @@
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class=brand href="{% url index %}">Maintain-e-nator</a>
+                    <a class="brand" href="{% url index %}">Maintain-e-nator</a>
                     <div class="nav-collapse collapse">
                         <ul class="nav">
-                            <li><a href="{% url admin:index %}">Admin</a></li>
+                            <li><a href="{% url tracking:index %}">Trackings</a></li>
                             <li><a href="{% url about %}">About</a></li>
                         </ul>
                     </div>
+                    {% if user.is_authenticated %}
+                        <a class="loginout" href="{% url logout %}">Logout</a>
+                    {% else %}
+                        <a class="loginout" href="{% url login %}">Login</a>
+                    {% endif %}
                 </div>
             </div>
         </div>

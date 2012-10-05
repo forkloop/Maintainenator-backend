@@ -16,7 +16,7 @@ logger = logging.getLogger('mode.debug')
 
 def index(request):
     trackings_list = Tracking.objects.all()
-    return render_to_response('tracking_index.html', {'trackings_list' : trackings_list})
+    return render_to_response('tracking_index.html', {'trackings_list': trackings_list, 'user': request.user})
 
 def new(request):
     c = {}
@@ -25,7 +25,7 @@ def new(request):
         if form.is_valid():
             tracking = form.save()
             logger.debug('Processing ' + str(tracking.pk))
-            return HttpResponseRedirect(reverse('trackings.views.show', args=[tracking.pk]))
+            return HttpResponseRedirect(reverse('tracking:show', args=[tracking.pk]))
     else:
         form = TrackingForm()
         c.update(csrf(request))
@@ -38,7 +38,4 @@ def show(request, tracking_id):
     except Tracking.DoesNotExist:
         raise Http404
     # tracking = get_object_or_404(Tracking, pk=tracking_id)
-    return render_to_response('trackings_show.html', {'tracking': tracking}, context_instance=RequestContext(request))
-
-def img(request, path):
-    return HttpResponse(path)
+    return render_to_response('trackings_show.html', {'tracking': tracking, 'user': request.user})
