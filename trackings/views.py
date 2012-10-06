@@ -38,4 +38,19 @@ def show(request, tracking_id):
     except Tracking.DoesNotExist:
         raise Http404
     # tracking = get_object_or_404(Tracking, pk=tracking_id)
-    return render_to_response('trackings_show.html', {'tracking': tracking, 'user': request.user})
+    return render(request, 'trackings_show.html', {'tracking': tracking, 'user': request.user})
+
+def fix(request, tracking_id):
+    if request.method == 'POST':
+        try:
+            tracking = Tracking.objects.get(pk=tracking_id)
+        except Tracking.DoesNotExist:
+            raise Http404
+        if request.POST.has_key('fixed'):
+            output = True
+        else:
+            output = False
+        if tracking.fixed != output:
+            tracking.fixed = output
+            tracking.save()
+        return HttpResponseRedirect(reverse('tracking:show', args=[tracking.pk]))

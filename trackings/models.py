@@ -17,6 +17,7 @@ class Tracking(models.Model):
     latitude = models.DecimalField(max_digits=13, decimal_places=10, null=True, blank=True)
     longitude = models.DecimalField(max_digits=13, decimal_places=10, null=True, blank=True)
     location = models.CharField(max_length=100)
+    fixed = models.BooleanField(editable=False, default=False)
 
     def __unicode__(self):
         return u'%s : %s' % (self.description, self.photo)

@@ -7,6 +7,10 @@ h1, h2, h3 {
     text-align: center;
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 .navbar .brand {
     color: #000000;
     font-weight: bold;
@@ -23,6 +27,23 @@ h1, h2, h3 {
     margin: 20px auto;
     padding: 20px 30px;
     box-shadow: -6px 6px 20px rgba(10, 20, 30, 0.4);
+}
+
+.report-edit {
+    padding: 10px 20px;
+}
+
+.report-edit input[type="checkbox"] {
+    display: inline-block;
+}
+
+.report-edit span {
+    background-color: #E9F3FA;
+    border-radius: 2px 2px 2px 2px;
+    display: block;
+    padding: 3px;
+    text-align: center;
+    width: 42px;
 }
 
 .login-wrap {
