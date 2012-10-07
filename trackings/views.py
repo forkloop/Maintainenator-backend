@@ -40,17 +40,25 @@ def show(request, tracking_id):
     # tracking = get_object_or_404(Tracking, pk=tracking_id)
     return render(request, 'trackings_show.html', {'tracking': tracking, 'user': request.user})
 
+# ajax request
 def fix(request, tracking_id):
-    if request.method == 'POST':
+    if request.is_ajax() and request.method == 'POST':
         try:
             tracking = Tracking.objects.get(pk=tracking_id)
         except Tracking.DoesNotExist:
             raise Http404
-        if request.POST.has_key('fixed'):
-            output = True
-        else:
-            output = False
-        if tracking.fixed != output:
-            tracking.fixed = output
+        update_status = request.POST['fixed']
+        old_status = str(tracking.fixed).lower()
+        if update_status != old_status:
+            if update_status == 'true':
+                message = 'true'
+                tracking.fixed = True
+            else: 
+                message = 'false'
+                tracking.fixed = False
             tracking.save()
-        return HttpResponseRedirect(reverse('tracking:show', args=[tracking.pk]))
+        else:
+            message = 'unchanged'
+        return HttpResponse(message)
+    else:
+        raise Http404

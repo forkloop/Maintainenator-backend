@@ -6,8 +6,7 @@
 <div class="report-wrap">
     {% if user.is_authenticated %}
     <div class="report-edit">
-        <!--<span><a href="#">Edit</a></span>-->
-        <form action="{% url tracking:fix tracking.id %}" method="post">
+        <form action="{% url tracking:fix tracking.id %}" method="post" id="fixForm">
             {% csrf_token %}
             {% if tracking.fixed %}
                 <input type="checkbox" name="fixed" checked="checked">
@@ -19,9 +18,15 @@
         </form>
     </div>
     {% endif %}
+
     <div class="report">
         <div class="report-inner">
         <h2>{{ tracking.description }}</h2>
+        {% if tracking.fixed %}
+            <span>&#10003</span>
+        {% else %}
+            <span>&#10007</span>
+        {% endif %}
         <div class="report-location">
             <p><span>{{ tracking.location }}</span></p>
         </div>
