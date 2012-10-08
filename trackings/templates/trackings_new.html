@@ -1,5 +1,10 @@
-<h1> New Tracking </h1>
+{% extends "trackings_basic.html" %}
 
+{% block title %} New tracking {% endblock %}
+
+{% block container %}
+<h1> New Tracking </h1>
+<div class="hero-unit">
 {% if error_message %}
     <p><strong>{{ error_message }}</strong></p>
 {% endif %}
@@ -7,5 +12,7 @@
 <form enctype="multipart/form-data" action="/trackings/new/" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Submit" />
+    <input class="btn" type="submit" value="Submit" />
 </form>
+</div>
+{% endblock %}

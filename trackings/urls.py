@@ -14,5 +14,6 @@ urlpatterns = patterns('trackings.views',
 
 urlpatterns += patterns('', 
         #url(r'^(?P<tracking_id>\d+)/photos/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
-        url(r'^\d+/trackings/photos/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+        url(r'^photos/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+        #url(r'^\d+/trackings/photos/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
 )

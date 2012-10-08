@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.http import Http404
+from django.conf import settings
 from django.core.context_processors import csrf
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
@@ -38,7 +39,7 @@ def show(request, tracking_id):
     except Tracking.DoesNotExist:
         raise Http404
     # tracking = get_object_or_404(Tracking, pk=tracking_id)
-    return render(request, 'trackings_show.html', {'tracking': tracking, 'user': request.user})
+    return render(request, 'trackings_show.html', {'tracking': tracking, 'user': request.user, 'base_url': settings.BASE_URL})
 
 # ajax request
 def fix(request, tracking_id):
