@@ -1,9 +1,17 @@
 # Django settings for heroku_django project.
 import dj_database_url
 from os import path
+from os import environ
+from socket import gethostname
 
 root = path.dirname(__file__).replace('\\', '/')
 
+hostname = gethostname()
+
+if hostname == 'hogwarts':
+    BASE_URL = 'http://127.0.0.1:8000'
+else:
+    BASE_URL = 'maintain-e-nator.herokuapp.com'
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -46,7 +54,7 @@ MEDIA_ROOT = root + '/../trackings/photos/'
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = '/photos/'
+MEDIA_URL = '/trackings/photos/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -127,6 +135,7 @@ INSTALLED_APPS = (
     'gunicorn',
     'south',
     'tastypie',
+    'storages',
     'trackings',
 )
 
@@ -175,3 +184,11 @@ LOGGING = {
 
 # Tastypie settings
 TASTYPIE_FULL_DEBUG = True
+
+# AWS
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+STATICFILES_STORAGE = DEFAULT_FILE_STORAGE
+AWS_ACCESS_KEY_ID = environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = environ.get('credential.AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = 'maintain-e-nator-beta'
+STATIC_URL = '//s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME

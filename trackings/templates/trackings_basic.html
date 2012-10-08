@@ -2,6 +2,8 @@
 <!doctype html>
 <html lang="en">
     <head>
+        <!-- Base URL -->
+        {% block base_url %}{% endblock %}
         <title>{% block title %} Maintain-e-nator {% endblock %}</title>
         <!-- Bootstrap -->
         <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
