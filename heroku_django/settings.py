@@ -11,7 +11,7 @@ hostname = gethostname()
 if hostname == 'hogwarts':
     BASE_URL = 'http://127.0.0.1:8000'
 else:
-    BASE_URL = 'maintain-e-nator.herokuapp.com'
+    BASE_URL = 'http://maintain-e-nator.herokuapp.com'
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -49,12 +49,14 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = root + '/../trackings/photos/'
+MEDIA_ROOT = root + '/../'
+
+PHOTO_ROOT = MEDIA_ROOT + 'trackings/photos/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = '/trackings/photos/'
+MEDIA_URL = ''
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -149,7 +151,7 @@ LOGGING = {
     'disable_existing_loggers': False,
     'formatters': {
         'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(message)s'
+            'format': '***[%(levelname)s] %(asctime)s %(module)s %(message)s'
         },
     },
     'filters': {
@@ -186,9 +188,9 @@ LOGGING = {
 TASTYPIE_FULL_DEBUG = True
 
 # AWS
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-STATICFILES_STORAGE = DEFAULT_FILE_STORAGE
+#DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+#STATICFILES_STORAGE = DEFAULT_FILE_STORAGE
 AWS_ACCESS_KEY_ID = environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = environ.get('credential.AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'maintain-e-nator-beta'
-STATIC_URL = '//s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
+#STATIC_URL = '//s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
