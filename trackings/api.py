@@ -2,7 +2,9 @@ from tastypie.authorization import Authorization
 from tastypie.resources import ModelResource
 from trackings.models import Tracking
 
-class TrackingResource(ModelResource):
+from trackings.multipart_resource import MultipartResource
+
+class TrackingResource(MultipartResource, ModelResource):
     class Meta:
         queryset = Tracking.objects.all()
         resource_name = 'trackings'
