@@ -11,7 +11,7 @@ hostname = gethostname()
 if hostname == 'hogwarts':
     BASE_URL = 'http://127.0.0.1:8000'
 else:
-    BASE_URL = 'maintain-e-nator.herokuapp.com'
+    BASE_URL = 'http://maintain-e-nator.herokuapp.com'
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
