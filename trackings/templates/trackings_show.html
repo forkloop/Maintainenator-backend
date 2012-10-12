@@ -32,12 +32,12 @@
             <p><span>{{ tracking.location }}</span></p>
         </div>
         <img src="{{ tracking.photo.url }}" />
-        {# <img src="{{ STATIC_URL }}{{ tracking.photo }}" /> #}
     </div>
     </div>
     <div class="report-map">
-        <div class="map">
-            <img src="http://maps.googleapis.com/maps/api/staticmap?center=-15.800513,-47.91378&zoom=20&size=400x400&sensor=false">
+        <span id="latitude" class="hidden-geo">{{ tracking.latitude }}</span>
+        <span id="longitude" class="hidden-geo">{{ tracking.longitude }}</span>
+        <div id="map-canvas" class="map">
         </div>
     </div>
     <div class="report-foot">
@@ -46,4 +46,9 @@
         </p>
     </div>
     </div>
+{% endblock %}
+{% block extra_scripts %}
+{% load staticfiles %}
+<script src="http://maps.google.com/maps/api/js?key=AIzaSyCL6FCIh_lcj9RPY-TZ6O08acGrffJvbq8&sensor=false"></script>
+<script src="{% static "js/loadmap.js" %}"></script>
 {% endblock %}

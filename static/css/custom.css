@@ -84,6 +84,12 @@ a:hover {
 
 .map {
     text-align: center;
+    height: 400px;
+    width: 400px;
+}
+
+.hidden-geo {
+    display: none;
 }
 
 .report-foot {
