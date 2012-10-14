@@ -29,5 +29,5 @@ application = get_wsgi_application()
 from barrel import cooper
 
 REALM = 'PRIVATE'
-USERS = [('forkloop', '494718489')]
-#application = cooper.basicauth(users=USERS, realm=REALM)(get_wsgi_application())
+USERS = [('maintainenator', '494718489')]
+application = cooper.basicauth(users=USERS, realm=REALM)(get_wsgi_application())
