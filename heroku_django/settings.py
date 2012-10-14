@@ -188,9 +188,9 @@ LOGGING = {
 TASTYPIE_FULL_DEBUG = True
 
 # AWS
-#DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-#STATICFILES_STORAGE = DEFAULT_FILE_STORAGE
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+STATICFILES_STORAGE = DEFAULT_FILE_STORAGE
 AWS_ACCESS_KEY_ID = environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = environ.get('credential.AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'maintain-e-nator-beta'
-#STATIC_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
+STATIC_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
