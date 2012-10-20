@@ -20,6 +20,7 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^grappelli/', include('grappelli.urls')),
     url(r'^about/$', 'heroku_django.views.about', name='about'),
     url(r'^trackings/', include('trackings.urls', namespace='tracking')),
 

@@ -33,3 +33,10 @@ $("#fixForm").submit(function(event) {
 .ajaxError(function(event, request, settings) {
     alert(request.status);
 });
+
+$(function() {
+    $('#add_photo').click(function() {
+        var number = $('input[type="file"]').size();
+        $('<p><input type="file" name="extra_photo' + number + '"></p>').insertBefore($('#add_photo'));
+    });
+});
