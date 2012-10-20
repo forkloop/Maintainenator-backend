@@ -6,6 +6,7 @@ from django.core.context_processors import csrf
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.shortcuts import render_to_response
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from trackings.models import Tracking, TrackingForm, PhotoForm
 
@@ -14,7 +15,17 @@ logger = logging.getLogger('mode.debug')
 
 def index(request):
     trackings_list = Tracking.objects.all()
-    return render_to_response('tracking_index.html', {'trackings_list': trackings_list, 'user': request.user})
+    paginator = Paginator(trackings_list, 20)
+
+    page = request.GET.get('page')
+    logger.debug('Requesting page: ' + str(page))
+    try:
+        trackings = paginator.page(page)
+    except PageNotAnInteger:
+        trackings = paginator.page(1)
+    except EmptyPage:
+        trackings = paginator.page(paginator.num_pages)
+    return render_to_response('tracking_index.html', {'trackings': trackings, 'user': request.user})
 
 def new(request):
     c = {}
