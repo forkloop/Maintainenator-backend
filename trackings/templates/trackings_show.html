@@ -5,6 +5,7 @@
 
 {% block container %}
 <div class="report-wrap">
+    {% comment %}
     {% if user.is_authenticated %}
     <div class="report-edit">
         <form action="{% url tracking:fix tracking.id %}" method="post" id="fixForm">
@@ -19,7 +20,7 @@
         </form>
     </div>
     {% endif %}
-
+    {% endcomment %}
     <div class="report">
         <div class="report-inner">
         <h2>{{ tracking.description }}</h2>
@@ -31,9 +32,9 @@
         <div class="report-location">
             <p><span>{{ tracking.location }}</span></p>
         </div>
-        {% if tracking.photo %}
-            <img src="{{ tracking.photo.url }}" />
-        {% endif %}
+        {% for photo in tracking.photo_set.all %}
+            <img src="{{ photo.photo.url }}" />
+        {% endfor %}
     </div>
     </div>
     <div class="report-map">
