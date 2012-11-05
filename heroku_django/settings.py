@@ -145,6 +145,7 @@ INSTALLED_APPS = (
     'tastypie',
     'storages',
     'debug_toolbar',
+    'logs',
     'trackings',
 )
 

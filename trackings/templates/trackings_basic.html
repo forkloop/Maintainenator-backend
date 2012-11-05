@@ -23,19 +23,21 @@
                             <li><a href="{% url about %}">About</a></li>
                         </ul>
                     </div>
+                    {% comment %}
                     {% if user.is_authenticated %}
-                        <a class="loginout" href="{% url logout %}">Logout</a>
+                    <a class="loginout" href="{% url logout %}">Logout</a>
                     {% else %}
-                        <a class="loginout" href="{% url login %}">Login</a>
+                    <a class="loginout" href="{% url login %}">Login</a>
                     {% endif %}
+                    {% endcomment %}
                 </div>
             </div>
         </div>
         <div class="container">
             {% block container %}{% endblock %}
-        <footer>
+            <footer>
             <p> &copy 2012 </p>
-        </footer>
+            </footer>
         </div>
         <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script src="{% static "js/bootstrap.min.js" %}"></script>

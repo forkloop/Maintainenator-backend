@@ -1,0 +1,42 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+html, body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+fieldset.grp-module .grp-row label {
+    font-family: 'Open Sans', sans-serif;
+}
+
+input[type="text"], input[type="password"], input[type="submit"], textarea, select {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.grp-font-family, .grp-button, input[type="submit"], a.grp-button, button.grp-button, input.grp-button[type="button"], .ui-datepicker, #ui-timepicker, .ui-autocomplete, body {
+    font-family: 'Open Sans';
+}
+
+.grp-change-form .grp-module:not(.grp-submit-row) {
+    min-width: 600px;
+}
+
+.grp-module.tracking {
+    min-width: 600px;
+    width: 600px;
+}
+
+.grp-row .vTextField, .grp-row .vURLField, .grp-row .vFileBrowseField, .grp-row textarea, .grp-row .vLargeTextField, .grp-row .vXMLLargeTextField, .grp-autocomplete-wrapper-m2m {
+    width: 400px;
+}
+
+.report-map {
+    position: relative;
+    float: right;
+    width: 600px;
+}
+
+.map {
+    text-align: center;
+    height: 450px;
+    width: 600px;
+}

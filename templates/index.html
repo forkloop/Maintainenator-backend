@@ -2,5 +2,9 @@
 {% block title %} Maintain-e-nator {% endblock %}
 
 {% block container %}
-        <p> Welcome to <em>Maintain-e-nator</em>! </p>
+    <div id="fp_bg">
+        {% load staticfiles %}
+        <img src="{% static "images/fp_bg.jpg" %}" />
+    </div>
+    <p class="fp"> Welcome to <em>Maintain-e-nator</em>! </p>
 {% endblock %}
