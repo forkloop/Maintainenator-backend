@@ -45,9 +45,9 @@ class CustomIndexDashboard(Dashboard):
         # append an app list module for "Applications"
         self.children.append(modules.AppList(
             _('AppList: Applications'),
-            collapsible=True,
+            collapsible=False,
             column=1,
-            css_classes=('collapse closed',),
+            #css_classes=('collapse closed',),
             exclude=('django.contrib.*',),
         ))
 
@@ -57,19 +57,6 @@ class CustomIndexDashboard(Dashboard):
             column=1,
             collapsible=False,
             models=('django.contrib.*',),
-        ))
-
-        # append another link list module for "support".
-        self.children.append(modules.LinkList(
-            _('Media Management'),
-            column=2,
-            children=[
-                {
-                    'title': _('FileBrowser'),
-                    'url': '/admin/filebrowser/browse/',
-                    'external': False,
-                },
-            ]
         ))
 
         # append another link list module for "support".
@@ -97,9 +84,9 @@ class CustomIndexDashboard(Dashboard):
 
         # append a feed module
         self.children.append(modules.Feed(
-            _('Latest Django News'),
+            _('UB Public Service'),
             column=2,
-            feed_url='http://www.djangoproject.com/rss/weblog/',
+            feed_url='http://www.buffalo.edu/news/distributed/publicservice.rss',
             limit=5
         ))
 

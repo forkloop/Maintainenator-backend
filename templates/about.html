@@ -1,8 +1,13 @@
 {% extends 'trackings_basic.html' %}
 
 {% block title %} About {% endblock %}
-
+{% block extra_css %}
+{% load staticfiles %}
+    <link href="{% static "css/pages.css" %}" rel="stylesheet">
+{% endblock %}
 {% block container %}
-<h2> About </h2>
-<p> Maintain-e-nator </p>
+<div id="about-wrapper">
+    <h2> About </h2>
+    <p> Finding some facility issue? Submit a tracking to Maintain-e-nator with our <a href="#">Android App</a> now! </p>
+</div>
 {% endblock %}

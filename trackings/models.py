@@ -1,6 +1,14 @@
+from django.core.mail import send_mail
+from django.db.models.signals import post_save, Signal
+from django.dispatch import receiver
 import datetime
 from django.db import models
 from django.forms import ModelForm
+from celery import task
+
+import sys
+import logging
+logger = logging.getLogger('mode.debug')
 
 class Tracking(models.Model):
     SEVERITY_LEVELS = (
@@ -49,3 +57,28 @@ class PhotoForm(ModelForm):
     class Meta:
         model = Photo
         fields = ('photo',)
+
+@task(ignore_result=True)
+def send_thanks_email(updated_instance_pk):
+    try:
+        logger.debug('Updating tracking: ' + str(updated_instance_pk))
+        tracking = Tracking.objects.get(pk=updated_instance_pk)
+        if tracking.fixed:
+            #TODO customize email content
+            send_mail('Issue fixed', 'Thank you!', 'forkloop.dev@gmail.com', ['forkloop@gmail.com'])
+    except:
+        logger.error(sys.exc_info()[0])
+
+@receiver(post_save, sender=Tracking)
+def send_thanks_email_wrapper(sender, **kwargs):
+    """
+    **kwargs:
+        instance              The instance of model be saved.
+        created               Whether this instance was created.
+        updated_fields        Which fields are updated, only when specify explicitly in `save()`.
+    """
+    try:
+        updated_instance_pk = kwargs.get('instance').pk
+        send_thanks_email.delay(updated_instance_pk)
+    except:
+        logger.error(sys.exc_info()[0])

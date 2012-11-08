@@ -1,19 +1,68 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import url("http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,700italic,700,400italic&amp;subset=latin");
 
 body {
     padding-top: 60px;
     padding-bottom: 40px;
+    min-height: 800px;
+    background-color: #AAAAAA;
+    position: relative;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.navbar-inverse {
+}
+
+.navbar-inverse .navbar-inner {
+    background: none;
+    border: none;
+}
+
+.navbar-inverse .nav > li > a {
+    color: #FFFFFF;
 }
 
 h1, h2, h3 {
     text-align: center;
 }
+ ul {
+     list-style: none;
+ }
+
+ #tracking-list li {
+ }
 
 a:hover {
     text-decoration: none;
 }
 
-#fp_bg {
+#fp-wrapper {
+    /*box-shadow: -6px 6px 20px rgba(10, 20, 30, 0.4);*/
+    min-height: 95%;
+    position: absolute;
+    top: 0;
+    width: 1170px;
+}
+
+#tracking-list {
+    margin-top: 100px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0px;
+    color: #FFFFFF;
+    width: 100%;
+    background-color: #019AD2;
+    height: 5%;
+}
+
+footer > p {
+    text-align: center;
+}
+
+#fp-bg {
     position: fixed;
     height: 100%;
     width: 100%;
@@ -24,17 +73,19 @@ a:hover {
 
 p.fp {
     color: #FFFFFF;
-    font-size: 24px;
+    font-size: 30px;
     font-family: 'Open Sans', sans-serif;
+    margin-top: 100px;
+    font-weight: bold;
 }
 
-#fp_bg img {
+#fp-bg img {
     width: 100%;
     height: 100%;
 }
 
 .navbar .brand {
-    color: #000000;
+    color: #FFFFFF;
     font-weight: bold;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 1);
 }
@@ -46,9 +97,7 @@ p.fp {
 }
 
 .report-wrap {
-    margin: 20px auto;
-    padding: 20px 30px;
-    box-shadow: -6px 6px 20px rgba(10, 20, 30, 0.4);
+    margin: 100px auto 0;
 }
 
 .report-edit {
@@ -82,9 +131,10 @@ p.fp {
 .report {
     float: left;
     width: 600px;
-    margin: auto;
+    margin: 0 0 0 5px;
     padding: 20px 0;
-    box-shadow: -7px 0px 16px rgba(10, 20, 30, 0.5);
+    box-shadow: 1px 2px 3px rgba(10, 20, 30, 0.5) inset;
+    min-height: 480px;
 }
 
 .report-inner {
@@ -99,15 +149,15 @@ p.fp {
     color: #0099CC;
 }
 
-.report-map {
+#report-map {
     float: right;
-    width: 500px;
+    width: 548px;
 }
 
 .map {
     text-align: center;
     height: 520px;
-    width: 520px;
+    width: 540px;
 }
 
 .hidden-geo {

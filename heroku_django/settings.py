@@ -1,15 +1,19 @@
 # Django settings for heroku_django project.
+import djcelery
 import dj_database_url
 from os import path
 from os import environ
 from socket import gethostname
+
+djcelery.setup_loader()
+BROKER_BACKEND = 'django'
 
 root = path.dirname(__file__).replace('\\', '/')
 
 hostname = gethostname()
 
 if hostname == 'hogwarts':
-    BASE_URL = 'http://127.0.0.1:8000'
+    BASE_URL = 'http://127.0.0.1:5000'
 else:
     BASE_URL = 'http://maintain-e-nator.herokuapp.com'
 
@@ -17,8 +21,14 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 INTERNAL_IPS = ('127.0.0.1',)
-GRAPPELLI_ADMIN_TITLE = 'Maintain-e-nator'
+GRAPPELLI_ADMIN_TITLE = '<a href="/">Maintain-e-nator</a>'
 GRAPPELLI_INDEX_DASHBOARD = 'dashboard.CustomIndexDashboard'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'forkloop.dev@gmail.com'
+EMAIL_HOST_PASSWORD = environ.get('DEV_EMAIL_PASSWD')
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -139,6 +149,8 @@ INSTALLED_APPS = (
     'grappelli',
     'django.contrib.admin',
     # 'django.contrib.admindocs',
+    'djcelery',
+    'kombu.transport.django',
     'gunicorn',
     'south',
     'tastypie',
@@ -194,9 +206,13 @@ LOGGING = {
 TASTYPIE_FULL_DEBUG = True
 
 # AWS
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-STATICFILES_STORAGE = DEFAULT_FILE_STORAGE
 AWS_ACCESS_KEY_ID = environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = environ.get('credential.AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'maintain-e-nator-beta'
-STATIC_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
+if hostname != 'hogwarts':
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    STATICFILES_STORAGE = DEFAULT_FILE_STORAGE
+    STATIC_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
+else:
+    MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
+    INSTALLED_APPS += ('debug_toolbar',)

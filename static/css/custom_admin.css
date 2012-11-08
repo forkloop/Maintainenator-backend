@@ -1,4 +1,5 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import url("http://fonts.googleapis.com/css?family=Open+Sans");
+@import url("http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,700italic,700,400italic&amp;subset=latin");
 
 html, body {
     font-family: 'Open Sans', sans-serif;
@@ -13,7 +14,7 @@ input[type="text"], input[type="password"], input[type="submit"], textarea, sele
 }
 
 .grp-font-family, .grp-button, input[type="submit"], a.grp-button, button.grp-button, input.grp-button[type="button"], .ui-datepicker, #ui-timepicker, .ui-autocomplete, body {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', sans-serif;
 }
 
 .grp-change-form .grp-module:not(.grp-submit-row) {

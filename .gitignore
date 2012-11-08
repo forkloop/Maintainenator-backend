@@ -3,3 +3,4 @@ venv/
 *.pyc
 trackings/photos/
 collect_static/
+celerybeat-schedule.db

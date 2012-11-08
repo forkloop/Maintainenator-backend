@@ -3,7 +3,8 @@
 {% block title %} All trackings {% endblock %}
 
 {% block container %}
-{% if trackings %}
+<div id="tracking-list">
+    {% if trackings %}
     <ul>
         {% for tracking in trackings %}
         <li><a href="{% url tracking:show tracking.id %}"><em>{{ tracking.description }}</em>, {{ tracking.location }}</a></li>
@@ -12,7 +13,7 @@
     <div class="pagination">
         <span class="step-links">
             {% if trackings.has_previous %}
-                <a href="?page={{ trackings.previous_page_number}}">previous</a>
+            <a href="?page={{ trackings.previous_page_number}}">previous</a>
             {% endif %}
 
             <span class="current">
@@ -24,7 +25,8 @@
             {% endif %}
         </span>
     </div>
-{% else %}
+    {% else %}
     <p> No trackings yet.</p>
-{% endif %}
+    {% endif %}
+</div>
 {% endblock %}

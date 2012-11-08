@@ -13,7 +13,7 @@ class TrackingResource(MultipartResource, ModelResource):
     def obj_create(self, bundle, request, **kwargs):
         bundle_obj = super(TrackingResource, self).obj_create(bundle, request, **kwargs)
         tracking = bundle_obj.obj
-        # Almost 3 photos
+        # At most 3 photos
         for i in xrange(3):
             key = 'photo' + str(i+1)
             if bundle.data.has_key(key):

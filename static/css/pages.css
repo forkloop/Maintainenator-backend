@@ -1,0 +1,13 @@
+#about-wrapper {
+    color: #FFFFFF;
+    font-family: 'Gentium Book Basic';
+}
+
+#about-wrapper h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+#about-wrapper p {
+    font-size: 20px;
+}
