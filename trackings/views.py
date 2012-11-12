@@ -7,12 +7,15 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 from django.shortcuts import render_to_response
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+#from django.views.decorators.cache import cache_page
 
 from trackings.models import Tracking, TrackingForm, PhotoForm
 
 import logging
 logger = logging.getLogger('mode.debug')
 
+# decorator to redirect to index page.
+# used for `deprecate` views.
 def render_homepage(func):
     def rendered_func(*args, **kwargs):
         return redirect('index')
@@ -56,6 +59,7 @@ def new(request):
     c['photo_form'] = photo_form
     return render(request, 'trackings_new.html', c)
 
+#@cache_page(60*10)
 def show(request, tracking_id):
     try:
         tracking = Tracking.objects.get(pk=tracking_id)
@@ -64,8 +68,8 @@ def show(request, tracking_id):
     # tracking = get_object_or_404(Tracking, pk=tracking_id)
     return render(request, 'trackings_show.html', {'tracking': tracking, 'base_url': settings.BASE_URL})
 
-#TODO add decorator to disable it
-# ajax request
+# TODO add decorator to disable it
+# Ajax request to change tracking `fixed` value.
 def fix(request, tracking_id):
     if request.is_ajax() and request.method == 'POST':
         try:

@@ -1,5 +1,5 @@
 from django.core.mail import send_mail
-from django.db.models.signals import post_save, Signal
+from django.db.models.signals import post_save
 from django.dispatch import receiver
 import datetime
 from django.db import models
@@ -23,12 +23,12 @@ class Tracking(models.Model):
     latitude = models.DecimalField(max_digits=13, decimal_places=10, null=True, blank=True)
     longitude = models.DecimalField(max_digits=13, decimal_places=10, null=True, blank=True)
     building = models.CharField(max_length=20, blank=True)
-    floor = models.IntegerField(null=True, blank=True)
+    floor = models.CharField(blank=True, max_length=10)
     room = models.CharField(blank=True, max_length=10)
     location = models.CharField(blank=True, max_length=100)
     fixed = models.BooleanField(default=False)
     #TODO remove indoor field
-    indoor = models.BooleanField(default=True)
+    indoor = models.BooleanField(default=False)
     pub_date = models.DateTimeField(default=datetime.datetime.now)
 
     def __unicode__(self):

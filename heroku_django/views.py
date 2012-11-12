@@ -4,13 +4,12 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.shortcuts import render_to_response
-import logging
 
 def index(request):
-    return render_to_response('index.html', {'user': request.user})
+    return render_to_response('index.html')
 
 def about(request):
-    return render_to_response('about.html', {'user': request.user})
+    return render_to_response('about.html')
 
 def login_view(request):
     if request.user.is_authenticated():

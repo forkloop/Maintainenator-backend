@@ -41,3 +41,7 @@ input[type="text"], input[type="password"], input[type="submit"], textarea, sele
     height: 450px;
     width: 600px;
 }
+
+.grp-row .tracking-photo {
+    height: 600px;
+}

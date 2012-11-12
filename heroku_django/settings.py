@@ -5,6 +5,8 @@ from os import path
 from os import environ
 from socket import gethostname
 
+import logging
+
 djcelery.setup_loader()
 BROKER_BACKEND = 'django'
 
@@ -37,6 +39,12 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASES = { 'default': dj_database_url.config(default='postgres://localhost/heroku') }
+
+#CACHES = {
+#        'default': {
+#            'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
+#        }
+#}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -88,6 +96,7 @@ STATICFILES_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     root + '/../static/',
+    root + '/../',
 )
 
 # List of finder classes that know how to find static files in

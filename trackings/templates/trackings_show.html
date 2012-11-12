@@ -1,8 +1,8 @@
 {% extends "trackings_basic.html" %}
 
-{% block base_url %} <base href="{{ base_url }}" /> {% endblock %}
 {% block title %} Tracking {{ tracking.id }} {% endblock %}
 
+{% load staticfiles %}
 {% block container %}
 <div class="report-wrap">
     {% comment %}
@@ -33,7 +33,7 @@
             <p><span>{{ tracking.location }}</span></p>
         </div>
         {% for photo in tracking.photo_set.all %}
-            <img src="{{ photo.photo.url }}" />
+            <img src="{% static photo.photo.url %}" />
         {% endfor %}
     </div>
     </div>
@@ -49,7 +49,6 @@
     </div>
 {% endblock %}
 {% block extra_scripts %}
-{% load staticfiles %}
 <script src="http://maps.google.com/maps/api/js?key=AIzaSyCL6FCIh_lcj9RPY-TZ6O08acGrffJvbq8&sensor=false"></script>
 <script src="{% static "js/loadmap.js" %}"></script>
 {% endblock %}
