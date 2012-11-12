@@ -1,5 +1,5 @@
 {% extends "trackings_basic.html" %}
-
+{% block base_url %} <base href="{{ base_url }}" /> {% endblock %}
 {% block title %} Tracking {{ tracking.id }} {% endblock %}
 
 {% load staticfiles %}
@@ -33,7 +33,7 @@
             <p><span>{{ tracking.location }}</span></p>
         </div>
         {% for photo in tracking.photo_set.all %}
-            <img src="{% static photo.photo.url %}" />
+        <img src="{{ photo.photo.url }}" />
         {% endfor %}
     </div>
     </div>
