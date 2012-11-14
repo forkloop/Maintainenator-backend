@@ -47,6 +47,44 @@
         </p>
     </div>
     </div>
+
+	<div id="application">
+		<h1>Public Tracking</h1>
+		<div id="issueTable"></div>
+		<div id="detailedIssue">
+		</div>
+	</div>
+	<script id="issueTableTemplate" type="text/template">
+		<table cellspacing="0">
+			<thead>
+				<tr>
+					<th scope="col">Title</th>
+					<th scope="col">Time</th>
+					<th scope="col">Location</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</script>
+	<script id="issueRowTemplate" type="text/template">
+		<td><%= title %></td>
+		<td><%= time %></td>
+		<td><%= location.coarseLocation %></td>
+	</script>
+	<script id="detailedIssueTemplate" type="text/template">
+		<h1><%= title %></h1>
+		<p><%= time %></p>
+		<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=<%= location.lat %>+<%= location.long %>&amp;ie=utf8&amp;z=14&amp;ll=<%= location.lat %>,<%= location.long %>&amp;output=embed"></iframe>
+		<p><%= location.coarseLocation %></p>	
+	</script>
+	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="js/json2.js"></script>
+	<script type="text/javascript" src="js/underscore-min.js"></script>
+	<script type="text/javascript" src="js/backbone-min.js"></script>
+	<script type="text/javascript" src="js/app2.js"></script>
+
+
 {% endblock %}
 {% block extra_scripts %}
 <script src="http://maps.google.com/maps/api/js?key=AIzaSyCL6FCIh_lcj9RPY-TZ6O08acGrffJvbq8&sensor=false"></script>
