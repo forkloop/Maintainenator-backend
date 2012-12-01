@@ -59,7 +59,7 @@ def new(request):
     c['photo_form'] = photo_form
     return render(request, 'trackings_new.html', c)
 
-#@cache_page(60*10)
+# @cache_page(60*10)
 def show(request, tracking_id):
     try:
         tracking = Tracking.objects.get(pk=tracking_id)

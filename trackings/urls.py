@@ -8,7 +8,7 @@ logger = logging.getLogger('mode.debug')
 urlpatterns = patterns('trackings.views',
         url(r'^$', 'index', name='index'),
         url(r'^new/$', 'new'),
-        url(r'^(?P<tracking_id>\d+)/fix/$', 'fix', name='fix'),
+        #url(r'^(?P<tracking_id>\d+)/fix/$', 'fix', name='fix'),
         url(r'^(?P<tracking_id>\d+)/$', 'show', name='show'),
 )
 

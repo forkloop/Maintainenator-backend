@@ -5,6 +5,7 @@ import datetime
 from django.db import models
 from django.forms import ModelForm
 from celery import task
+from django.utils.translation import ugettext_lazy as _
 
 import sys
 import logging
@@ -18,7 +19,7 @@ class Tracking(models.Model):
             (4, 'Can wait'),
             (5, 'Just kidding'))
 
-    description = models.CharField(max_length=100)
+    description = models.CharField(_("Issue's short description"), max_length=100)
     severity = models.IntegerField(choices=SEVERITY_LEVELS, default=1)
     latitude = models.DecimalField(max_digits=13, decimal_places=10, null=True, blank=True)
     longitude = models.DecimalField(max_digits=13, decimal_places=10, null=True, blank=True)
@@ -45,10 +46,17 @@ class Photo(models.Model):
     photo = models.ImageField(upload_to=PHOTO_DIR)
 
     def __unicode__(self):
-        return u'%s' % self.photo.url
+        return u'%s' % self.photo.name
 
-    #def get_absolute_url(self):
+class Audio(models.Model):
+    AUDIO_DIR = 'trackings/audios/'
+    tracking = models.ForeignKey(Tracking)
+    audio = models.FileField(upload_to=AUDIO_DIR)
 
+    def __unicode__(self):
+        return u'%s' % self.audio.name
+
+# `POST form` for Tracking and Photo.
 class TrackingForm(ModelForm):
     class Meta:
         model = Tracking
@@ -58,6 +66,7 @@ class PhotoForm(ModelForm):
         model = Photo
         fields = ('photo',)
 
+# Celery task to send thanks email once an issue is fixed.
 @task(ignore_result=True)
 def send_thanks_email(updated_instance_pk):
     try:

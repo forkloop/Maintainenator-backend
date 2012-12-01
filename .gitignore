@@ -2,5 +2,6 @@
 venv/
 *.pyc
 trackings/photos/
+trackings/audios/
 collect_static/
 celerybeat-schedule.db

@@ -13,4 +13,5 @@ class MultipartResource(object):
 
             return data
 
+        # Invoke ModelResource.deserialize() for JSON data.
         return super(MultipartResource, self).deserialize(request, data, format)
