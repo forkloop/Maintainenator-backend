@@ -27,7 +27,7 @@ $(function() {
     var TrackingsCollection = Backbone.Collection.extend({
         model: Tracking,
 
-        url: 'http://127.0.0.1:5000/api/v1/trackings/?limit=0',
+        url: 'http://127.0.0.1:5000/api/v1/trackings/set/1;44/',
 
         parse: function(response) {
             return response['objects'];
@@ -49,7 +49,8 @@ $(function() {
             this.$el.html(Mustache.to_html(this.template, this.model.toJSON()));
         },
 
-        back: function() {
+        back: function(evt) {
+            evt.preventDefault();
             console.log('Rendering all trackings.');
             app.render();
         }
@@ -60,7 +61,7 @@ $(function() {
      */
     var TrackingListView = Backbone.View.extend({
         // Each tracking is embedded in the `ul` tag of index page.
-        tagName: 'li',
+        tagName: 'div',
 
         className: 'tracking-basic',
 
@@ -107,7 +108,7 @@ $(function() {
 
         render: function() {
             console.log('Rendering the app.');
-            this.$el.html('<ul id="all-trackings"></ul>');
+            this.$el.html('<div id="all-trackings"></div>');
             this.addAll();
         },
 
@@ -118,6 +119,14 @@ $(function() {
 
         addAll: function() {
             allTrackings.each(this.addOne);
+
+            var $container = $('#tracking-app');
+            $container.imagesLoaded(function() {
+                $container.masonry({
+                    itemSelector: '.tracking-basic',
+                    columnWidth: 340,
+                });
+            });
         }
     });
 

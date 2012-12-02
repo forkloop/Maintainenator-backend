@@ -1,26 +1,46 @@
+{% extends "trackings_basic.html" %}
 {% load staticfiles %}
-<!doctype html>
-<html>
-<head>
-    <title> Backbone </title>
-    <script id="tracking-list-template" type="text/x-mustache-template">
-        <p><% description %>, <% location %></p>
-    </script>
-    <script id="tracking-detail-template" type="text/x-mustache-template">
-        <a id="back" href="#"> All Trackings </a>
-        <h2><% description %></h2>
-    </script>
-</head>
-<body>
-    <h1> Trackings </h1>
-    <div id="tracking-app">
-        <ul id="all-trackings">
-        </ul>
+
+{% block title %}
+{{ block.super }} | Backbone
+{% endblock %}
+
+{% block base_url %}
+<base href="http://127.0.0.1:5000" />
+{% endblock %}
+
+{% block extra_css %}
+<link href="{% static "css/backbone.css" %}" rel="stylesheet" />
+{% endblock %}
+
+{% block mustache_template %}
+<script id="tracking-list-template" type="text/x-mustache-template">
+    <p><% description %></P>
+    <p><% location %></p>
+    <div>
+        <% #photos %>
+        <img class="list-view-image" src="<% photo %>" />
+        <% /photos %>
     </div>
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="{% static "js/underscore-min.js" %}"></script>
-    <script src="{% static "js/backbone.js" %}"></script>
-    <script src="{% static "js/mustache.js" %}"></script>
-    <script src="{% static "js/app.js" %}"></script>
-</body>
-</html>
+</script>
+<script id="tracking-detail-template" type="text/x-mustache-template">
+    <a id="back" href="#"> All Trackings </a>
+    <h2><% description %></h2>
+</script>
+{% endblock %}
+
+{% block container %}
+<h1> Trackings </h1>
+<div id="tracking-app">
+    <div id="all-trackings">
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{% static "js/jquery.masonry.min.js" %}"></script>
+<script src="{% static "js/underscore-min.js" %}"></script>
+<script src="{% static "js/backbone.js" %}"></script>
+<script src="{% static "js/mustache.js" %}"></script>
+<script src="{% static "js/app.js" %}"></script>
+{% endblock %}

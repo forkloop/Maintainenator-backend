@@ -5,7 +5,6 @@ body {
     padding-top: 60px;
     padding-bottom: 40px;
     min-height: 800px;
-    background-color: #AAAAAA;
     position: relative;
     margin: 0;
     font-family: 'Open Sans', sans-serif;
@@ -20,7 +19,7 @@ body {
 }
 
 .navbar-inverse .nav > li > a {
-    color: #FFFFFF;
+    color: #000000;
 }
 
 h1, h2, h3 {
@@ -85,7 +84,7 @@ p.fp {
 }
 
 .navbar .brand {
-    color: #FFFFFF;
+    color: #000000;
     font-weight: bold;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 1);
 }
