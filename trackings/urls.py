@@ -10,6 +10,8 @@ urlpatterns = patterns('trackings.views',
         url(r'^new/$', 'new'),
         #url(r'^(?P<tracking_id>\d+)/fix/$', 'fix', name='fix'),
         url(r'^(?P<tracking_id>\d+)/$', 'show', name='show'),
+        # backbone
+        url(r'^backbone/$', 'backbone', name='backbone')
 )
 
 urlpatterns += patterns('', 

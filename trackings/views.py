@@ -68,6 +68,9 @@ def show(request, tracking_id):
     # tracking = get_object_or_404(Tracking, pk=tracking_id)
     return render(request, 'trackings_show.html', {'tracking': tracking, 'base_url': settings.BASE_URL})
 
+def backbone(request):
+    return render(request, 'trackings_bb.html')
+
 # TODO add decorator to disable it
 # Ajax request to change tracking `fixed` value.
 def fix(request, tracking_id):
