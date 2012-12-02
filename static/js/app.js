@@ -34,26 +34,43 @@ $(function() {
         }
     });
 
-    //TODO
     var TrackingDetailView = Backbone.View.extend({
         el: $('#tracking-app'),
 
         template: $('#tracking-detail-template').html(),
 
         events: {
-            'click #back': 'back'
+            'click #all-trackings-btn': 'back'
         },
 
         render: function() {
             console.log('Rendering id = ' + this.model.get('id'));
             this.$el.html(Mustache.to_html(this.template, this.model.toJSON()));
+            this.loadmap();
         },
 
         back: function(evt) {
             evt.preventDefault();
             console.log('Rendering all trackings.');
             app.render();
-        }
+        },
+
+        loadmap: function() {
+            var latitude = this.model.get('latitude') || 42.96114;
+            console.log('latitude: ' + latitude);
+            var longitude = this.model.get('longitude') || -78.81498;
+            var latLng = new google.maps.LatLng(latitude, longitude);
+            var mapOptions = {
+                zoom: 18,
+                center: latLng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+            };
+            var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+            var marker = new google.maps.Marker({
+                position: latLng,
+                map: map,
+            });
+        },
     });
 
     /**
@@ -108,7 +125,7 @@ $(function() {
 
         render: function() {
             console.log('Rendering the app.');
-            this.$el.html('<div id="all-trackings"></div>');
+            this.$el.html('<h1>Trackings</h1><div id="all-trackings"></div>');
             this.addAll();
         },
 
@@ -120,11 +137,13 @@ $(function() {
         addAll: function() {
             allTrackings.each(this.addOne);
 
-            var $container = $('#tracking-app');
+            // Enable `pinterest` style with masonry.js.
+            var $container = $('#all-trackings');
             $container.imagesLoaded(function() {
+                console.log('Mansorying...');
                 $container.masonry({
                     itemSelector: '.tracking-basic',
-                    columnWidth: 340,
+                    columnWidth: 320,
                 });
             });
         }

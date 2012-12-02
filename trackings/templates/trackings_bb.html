@@ -24,20 +24,31 @@
     </div>
 </script>
 <script id="tracking-detail-template" type="text/x-mustache-template">
-    <a id="back" href="#"> All Trackings </a>
-    <h2><% description %></h2>
+    <a id="all-trackings-btn" href="#"> All Trackings </a>
+    <h1> <% description %> </h1>
+    <h2> <span class="location-marker"></span><% location %> </h2>
+    <div id="tracking-detail-wrap">
+        <div id="tracking-detail-image">
+            <% #photos %>
+                <img class="detail-view-image" src="<% photo %>" />
+            <% /photos %>
+        </div>
+        <div id="tracking-detail-map">
+            <div id="map-canvas" class="map">
+        </div>
 </script>
 {% endblock %}
 
 {% block container %}
-<h1> Trackings </h1>
 <div id="tracking-app">
+    <h1> Trackings </h1>
     <div id="all-trackings">
     </div>
 </div>
 {% endblock %}
 
 {% block extra_scripts %}
+<script src="http://maps.google.com/maps/api/js?key=AIzaSyCL6FCIh_lcj9RPY-TZ6O08acGrffJvbq8&sensor=false"></script>
 <script src="{% static "js/jquery.masonry.min.js" %}"></script>
 <script src="{% static "js/underscore-min.js" %}"></script>
 <script src="{% static "js/backbone.js" %}"></script>

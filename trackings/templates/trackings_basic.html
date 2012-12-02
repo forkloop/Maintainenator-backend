@@ -33,9 +33,8 @@
         <div class="container">
             {% block container %}{% endblock %}
         </div>
-        <footer>
-            <p> &copy 2012 </p>
-        </footer>
+        {% block footer %}
+        {% endblock %}
         <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script src="{% static "js/bootstrap.min.js" %}"></script>
         {% block extra_scripts %}{% endblock %}

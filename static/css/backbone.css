@@ -1,11 +1,68 @@
+h1 {
+    text-shadow: 1px 2px 3px;
+}
+
+#tracking-app {
+    padding: 20px 0;
+}
+
+#all-trackings {
+    position: relative;
+}
+
 .tracking-basic {
-    width: 320px;
+    width: 300px;
     text-align: center;
     box-shadow: 1px 2px 3px #ADADAD;
     border-radius: 2px;
     float: left;
+    padding-top: 6px;
+}
+
+.tracking-basic:hover {
+    box-shadow: 0 0 6px #019AD2;
+}
+
+.tracking-basic p {
+    color: #777777;
+    font-size: 14px;
 }
 
 img.list-view-image {
     width: 300px;
+}
+
+img.detail-view-image {
+    width: 600px;
+}
+
+#tracking-detail-wrap {
+    position: relative;
+}
+
+#tracking-detail-image {
+    float: left;
+    width: 600px;
+    box-shadow: 1px 2px 3px 3px #33B5E5;
+}
+
+#tracking-detail-map {
+    float: right;
+    height: 540px;
+    width: 560px;
+    box-shadow: 1px 2px 3px 3px #FFCCCC;
+}
+
+#all-trackings-btn {
+    background-color: #33B5E5;
+    color: #FFFFFF;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.location-marker {
+    background-image: url(../images/location-marker.jpg);
+    width: 64px;
+    height: 48px;
+    display: inline-block;
 }
