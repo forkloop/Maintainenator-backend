@@ -29,11 +29,18 @@
         {% else %}
             <span>&#10007</span>
         {% endif %}
+        <div class="report-audio">
+            {% for audio in tracking.audio_set.all %}
+                <video controls="controls">
+                    <source src="{% static audio.audio.name %}" type="video/mp4">
+                </video>
+            {% endfor %}
+        </div>
         <div class="report-location">
             <p><span>{{ tracking.location }}</span></p>
         </div>
         {% for photo in tracking.photo_set.all %}
-        <img src="{{ photo.photo.url }}" />
+        <img src="{% static photo.photo.name %}" />
         {% endfor %}
     </div>
     </div>

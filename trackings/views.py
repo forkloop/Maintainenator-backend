@@ -59,7 +59,7 @@ def new(request):
     c['photo_form'] = photo_form
     return render(request, 'trackings_new.html', c)
 
-#@cache_page(60*10)
+# @cache_page(60*10)
 def show(request, tracking_id):
     try:
         tracking = Tracking.objects.get(pk=tracking_id)
@@ -67,6 +67,9 @@ def show(request, tracking_id):
         raise Http404
     # tracking = get_object_or_404(Tracking, pk=tracking_id)
     return render(request, 'trackings_show.html', {'tracking': tracking, 'base_url': settings.BASE_URL})
+
+def backbone(request):
+    return render(request, 'trackings_bb.html')
 
 # TODO add decorator to disable it
 # Ajax request to change tracking `fixed` value.

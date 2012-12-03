@@ -24,7 +24,14 @@
                                 {% else %}
                                     {% if field.field.label == 'Photo' %}
                                         {% if field.field.value %}
-                                        <img class="tracking-photo" src="{% static field.field.value.name %}" />
+                                            <img class="tracking-photo" src="{% static field.field.value.name %}" />
+                                        {% endif %}
+                                    {% endif %}
+                                    {% if field.field.label == 'Audio' %}
+                                        {% if field.field.value %}
+                                            <audio controls="controls">
+                                                <source src="{% static field.field.value.name %}" type="audio/wmv">
+                                            </audio>
                                         {% endif %}
                                     {% endif %}
                                     {{ field.field }}

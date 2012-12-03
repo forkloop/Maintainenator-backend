@@ -6,6 +6,7 @@ from os import environ
 from socket import gethostname
 
 import logging
+logging.basicConfig(level=logging.INFO)
 
 djcelery.setup_loader()
 BROKER_BACKEND = 'django'
@@ -13,6 +14,7 @@ BROKER_BACKEND = 'django'
 root = path.dirname(__file__).replace('\\', '/')
 
 hostname = gethostname()
+logging.info('Running on: ' + hostname)
 
 if hostname == 'hogwarts':
     BASE_URL = 'http://127.0.0.1:5000'
@@ -127,6 +129,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    #'django.middleware.common.TransactionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',

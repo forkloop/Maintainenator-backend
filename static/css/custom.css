@@ -5,7 +5,6 @@ body {
     padding-top: 60px;
     padding-bottom: 40px;
     min-height: 800px;
-    background-color: #AAAAAA;
     position: relative;
     margin: 0;
     font-family: 'Open Sans', sans-serif;
@@ -15,17 +14,24 @@ body {
 }
 
 .navbar-inverse .navbar-inner {
-    background: none;
+    background: -moz-linear-gradient(center top, #1C92C8, #1982B2) repeat scroll 0 0 transparent;
     border: none;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4), 0 -1px 6px rgba(255, 255, 255, 0.2) inset;
 }
 
 .navbar-inverse .nav > li > a {
     color: #FFFFFF;
+    font-weight: bold;
+    border-left: 1px solid #4CA9D4;
+    border-right: 1px solid #1A76A1;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.2) inset;
 }
 
 h1, h2, h3 {
     text-align: center;
+    font-family: 'Gentium Book Basic', sans-serif;
 }
+
  ul {
      list-style: none;
  }
@@ -88,6 +94,7 @@ p.fp {
     color: #FFFFFF;
     font-weight: bold;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 1);
+    font-family: 'Gentium Book Basic', sans-serif;
 }
 
 .navbar .loginout {
