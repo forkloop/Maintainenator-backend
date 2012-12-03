@@ -1,6 +1,7 @@
 from tastypie import fields
 from tastypie.authorization import Authorization
 from tastypie.resources import ModelResource
+from tastypie.paginator import Paginator
 from trackings.models import Tracking, Photo
 
 from trackings.multipart_resource import MultipartResource
@@ -41,3 +42,4 @@ class TrackingResource(MultipartResource, ModelResource):
         queryset = Tracking.objects.all()
         resource_name = 'trackings'
         authorization = Authorization()
+        paginator_class = Paginator

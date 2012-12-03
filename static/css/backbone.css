@@ -8,15 +8,19 @@ h1 {
 
 #all-trackings {
     position: relative;
+    width: 1000px;
+    margin: auto;
 }
 
 .tracking-basic {
     width: 300px;
     text-align: center;
-    box-shadow: 1px 2px 3px #ADADAD;
+    box-shadow: 1px 2px 3px 3px #ADADAD;
     border-radius: 2px;
     float: left;
     padding-top: 6px;
+    margin-bottom: 20px;
+    margin-right: 20px;
 }
 
 .tracking-basic:hover {

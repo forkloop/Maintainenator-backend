@@ -27,20 +27,33 @@ $(function() {
     var TrackingsCollection = Backbone.Collection.extend({
         model: Tracking,
 
-        url: 'http://127.0.0.1:5000/api/v1/trackings/set/1;44/',
+        //FIXME
+        //url: 'http://127.0.0.1:5000/api/v1/trackings/?limit=20&offset=20',
+
+        url: function() {
+            var urlRoot = 'http://127.0.0.1:5000';
+            if (this.meta) {
+                return (urlRoot + this.meta['next']);
+            } else {
+                return (urlRoot + '/api/v1/trackings/');
+            }
+        },
+
+        meta: '',
 
         parse: function(response) {
+            this.meta = response['meta'];
             return response['objects'];
-        }
+        },
     });
 
     var TrackingDetailView = Backbone.View.extend({
-        el: $('#tracking-app'),
+        el: '#tracking-app',
 
         template: $('#tracking-detail-template').html(),
 
         events: {
-            'click #all-trackings-btn': 'back'
+            'click #all-trackings-btn': 'back',
         },
 
         render: function() {
@@ -99,28 +112,59 @@ $(function() {
         detail: function() {
             var detailView = new TrackingDetailView({model: this.model});
             detailView.render();
-        }
-    });
+        },
+     });
 
     /*
     var TrackingRouter = Backbone.Router.extend({
+        routes: {
+
+        },
     });
     */
 
+    var $container = $('#all-trackings');
+
     var allTrackings = new TrackingsCollection();
-    allTrackings.on('add', function(model) {
-        console.log(model.get('description'));
+    allTrackings.on('add', function(tracking) {
+        var $view = new TrackingListView({model: tracking}).render().$el;
+        console.log($view);
+        $view.imagesLoaded(function() {
+            $container.append($view);
+            $container.masonry('appended', $view, true);
+        });
     });
 
     var AppView = Backbone.View.extend({
 
-        el: $('#tracking-app'),
+        el: '#tracking-app',
 
         initialize: function() {
+            window.isLoading = false;
             allTrackings.on('reset', this.addAll, this);
             /* `fetch` triggers `reset` event.
              */
             allTrackings.fetch();
+
+            $(window).on('scroll', function() {
+                console.log(this);
+                var triggerHeight = 0;
+                console.log($(window).scrollTop() + ', ' + $container.height());
+                if (!window.isLoading && ($(window).scrollTop() + $(window).height() + triggerHeight > $container.height())) {
+                    console.log('fetching...');
+                    window.isLoading = true;
+                    allTrackings.fetch({
+                        add: true,
+                        success: function() {
+                            console.log('Fetched successfully, ' + this);
+                            if (allTrackings['meta']['next']) {
+                                window.isLoading = false;
+                            }
+                        },
+                    });
+                }
+            });
+
         },
 
         render: function() {
@@ -135,10 +179,10 @@ $(function() {
         },
 
         addAll: function() {
+            console.log('add all trackings...');
             allTrackings.each(this.addOne);
 
             // Enable `pinterest` style with masonry.js.
-            var $container = $('#all-trackings');
             $container.imagesLoaded(function() {
                 console.log('Mansorying...');
                 $container.masonry({
@@ -146,8 +190,8 @@ $(function() {
                     columnWidth: 320,
                 });
             });
-        }
-    });
+        },
+   });
 
     var app = new AppView();
 });
