@@ -49,5 +49,12 @@ class TrackingResource(MultipartResource, ModelResource):
     def dehydrate_pub_date(self, bundle):
         return bundle.data['pub_date'].strftime('%Y-%m-%d')
 
+    # Return md5 hexdigest of email address.
+    # Used by front-end to retrieve submitter photo from gravatar.com.
     def dehydrate_sub_email(self, bundle):
-        return hashlib.md5(bundle.data['sub_email']).hexdigest()
+        email = bundle.data['sub_email']
+        if email:
+            return hashlib.md5(email).hexdigest()
+        else:
+            # md5 hexdigest for empty string.
+            return 'd41d8cd98f00b204e9800998ecf8427e'
