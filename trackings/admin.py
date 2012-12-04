@@ -23,14 +23,14 @@ class TrackingAdmin(admin.ModelAdmin):
     fieldsets = (
             (None, {
                 'classes': ('tracking',),
-                'fields': ('description', 'severity', 'building', 'floor', 'room', 'location', 'fixed', 'indoor', 'latitude', 'longitude', 'pub_date')
+                'fields': ('description', 'severity', 'building', 'floor', 'room', 'location', 'fixed', 'indoor', 'latitude', 'longitude', 'pub_date', 'sub_email')
                 }),
     )
     inlines = [AudioInline, PhotoInline, LogInline]
     date_hierarchy = 'pub_date'
     list_display = ('description', 'building', 'location', 'fixed', 'pub_date')
     list_display_links = ('description',)
-    list_filter = ('indoor', 'building')
+    list_filter = ('indoor', 'building', 'severity')
     list_per_page = 15
     search_fields = ['building', 'description']
     readonly_fields = ['latitude', 'longitude', 'pub_date']

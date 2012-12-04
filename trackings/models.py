@@ -1,4 +1,4 @@
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 import datetime
@@ -11,6 +11,26 @@ import sys
 import logging
 logger = logging.getLogger('mode.debug')
 
+email_message = """
+<html>
+<head>
+<title> Maintain-e-nator </title>
+</head>
+<body background="https://a1.muscache.com/locations/uploads/city/hero/22/0_2831_95_1567_hero_USA_Manhattan_Skyline_061_EO.jpg">
+<pre>
+Hi {submitter},
+
+    We've fixed the problem submitted by you on <strong>{pub_date}</strong> in <em>{location}</em> now.
+
+    Thank you for your support!
+
+Best,
+-Maintain-e-nator.
+</pre>
+</body>
+</html>
+"""
+
 class Tracking(models.Model):
     SEVERITY_LEVELS = (
             (1, 'Very severe'),
@@ -20,7 +40,8 @@ class Tracking(models.Model):
             (5, 'Just kidding'))
 
     description = models.CharField(_("Issue's short description"), max_length=100)
-    severity = models.IntegerField(choices=SEVERITY_LEVELS, default=1)
+    # Suppose to be used by maintainers.
+    severity = models.IntegerField(choices=SEVERITY_LEVELS, default=3)
     latitude = models.DecimalField(max_digits=13, decimal_places=10, null=True, blank=True)
     longitude = models.DecimalField(max_digits=13, decimal_places=10, null=True, blank=True)
     building = models.CharField(max_length=20, blank=True)
@@ -43,7 +64,6 @@ class Tracking(models.Model):
         pass
 
 class Photo(models.Model):
-    #XXX move to settings
     PHOTO_DIR = 'trackings/photos/'
     tracking = models.ForeignKey(Tracking)
     photo = models.ImageField(upload_to=PHOTO_DIR)
@@ -75,9 +95,13 @@ def send_thanks_email(updated_instance_pk):
     try:
         logger.debug('Updating tracking: ' + str(updated_instance_pk))
         tracking = Tracking.objects.get(pk=updated_instance_pk)
-        if tracking.fixed:
-            #TODO customize email content
-            send_mail('Issue fixed', 'Thank you!', 'forkloop.dev@gmail.com', ['forkloop@gmail.com'])
+        if tracking.fixed and tracking.sub_email:
+            subject = "We've fixed the issue!"
+            message = email_message.format(submitter = tracking.submitter, pub_date = tracking.pub_date.strftime('%Y-%m-%d'), location = (tracking.location or tracking.building))
+            email = EmailMessage(subject, message, 'Maintain-e-nator <forkloop.dev@gmail.com>', [tracking.sub_email])
+            email.content_subtype = 'html'
+            email.send()
+            #send_mail(subject, message, 'maintain-e-nator', [tracking.sub_email])
     except:
         logger.error(sys.exc_info()[0])
 
