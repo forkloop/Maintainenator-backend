@@ -30,9 +30,9 @@
         {% endif %}
         <div class="report-audio">
             {% for audio in tracking.audio_set.all %}
-                <video controls="controls">
-                    <source src="{% static audio.audio.name %}" type="video/mp4">
-                </video>
+                <audio controls="controls">
+                    <source src="{% static audio.audio.name %}" type="audio/wav">
+                </audio>
             {% endfor %}
         </div>
         <div class="report-location">

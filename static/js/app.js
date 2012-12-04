@@ -126,7 +126,6 @@ $(function() {
     var allTrackings = new TrackingsCollection();
     allTrackings.on('add', function(tracking) {
         var $view = new TrackingListView({model: tracking}).render().$el;
-        console.log($view);
         $view.imagesLoaded(function() {
             $container.append($view);
             $container.masonry('appended', $view, true);
@@ -145,9 +144,7 @@ $(function() {
             allTrackings.fetch();
 
             $(window).on('scroll', function() {
-                console.log(this);
                 var triggerHeight = 0;
-                console.log($(window).scrollTop() + ', ' + $container.height());
                 if (!window.isLoading && ($(window).scrollTop() + $(window).height() + triggerHeight > $container.height())) {
                     console.log('fetching...');
                     window.isLoading = true;
