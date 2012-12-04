@@ -30,6 +30,9 @@ class Tracking(models.Model):
     fixed = models.BooleanField(default=False)
     #TODO remove indoor field
     indoor = models.BooleanField(default=False)
+    # If set `blank=True`, Django will store the empty string for CharField in db.
+    submitter = models.CharField(max_length=20, blank=True)
+    sub_email = models.EmailField(_('Submitter Email'), blank=True)
     pub_date = models.DateTimeField(default=datetime.datetime.now)
 
     def __unicode__(self):

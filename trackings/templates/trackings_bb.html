@@ -16,11 +16,17 @@
 {% block mustache_template %}
 <script id="tracking-list-template" type="text/x-mustache-template">
     <p><% description %></P>
-    <p><% location %></p>
+    <p class="location-info"><% location %></p>
     <div>
         <% #photos %>
         <img class="list-view-image" src="<% photo %>" />
         <% /photos %>
+    </div>
+    <div class="submitter-info">
+        <div>
+            <img class="avatar" src="http://www.gravatar.com/avatar/<% sub_email %>?s=40" />
+        </div>
+        <p>Submitted by <strong><% submitter %></strong> on <em><% pub_date %></em> </p>
     </div>
 </script>
 <script id="tracking-detail-template" type="text/x-mustache-template">

@@ -32,6 +32,28 @@ h1 {
     font-size: 14px;
 }
 
+.submitter-info {
+    display: block;
+    padding: 3px 50px;
+    height: 40px;
+    background-color: #EAEAEA;
+}
+
+.submitter-info p {
+    margin: auto;
+    height: 40px;
+    font-size: 10px;
+}
+
+.location-info {
+    border-bottom: 1px solid #019AD2;
+}
+
+img.avatar {
+    float: left;
+    margin-right: 6px;
+}
+
 img.list-view-image {
     width: 300px;
 }

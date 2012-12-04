@@ -6,6 +6,8 @@ from trackings.models import Tracking, Photo
 
 from trackings.multipart_resource import MultipartResource
 
+import hashlib
+
 class PhotoResource(ModelResource):
     tracking = fields.ToOneField('trackings.api.TrackingResource', 'tracking')
 
@@ -43,3 +45,9 @@ class TrackingResource(MultipartResource, ModelResource):
         resource_name = 'trackings'
         authorization = Authorization()
         paginator_class = Paginator
+
+    def dehydrate_pub_date(self, bundle):
+        return bundle.data['pub_date'].strftime('%Y-%m-%d')
+
+    def dehydrate_sub_email(self, bundle):
+        return hashlib.md5(bundle.data['sub_email']).hexdigest()
