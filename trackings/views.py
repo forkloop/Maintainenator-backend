@@ -66,10 +66,10 @@ def show(request, tracking_id):
     except Tracking.DoesNotExist:
         raise Http404
     # tracking = get_object_or_404(Tracking, pk=tracking_id)
-    return render(request, 'trackings_show.html', {'tracking': tracking, 'base_url': settings.BASE_URL})
+    return render(request, 'trackings_show.html', {'tracking': tracking})
 
 def backbone(request):
-    return render(request, 'trackings_bb.html')
+    return render(request, 'trackings_bb.html', {'base_url': settings.BASE_URL})
 
 # TODO add decorator to disable it
 # Ajax request to change tracking `fixed` value.

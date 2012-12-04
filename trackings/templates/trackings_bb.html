@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block base_url %}
-<base href="http://127.0.0.1:5000" />
+<base href="{{ base_url }}" />
 {% endblock %}
 
 {% block extra_css %}
@@ -37,6 +37,9 @@
             <div id="map-canvas" class="map">
         </div>
 </script>
+<script id="base-url" type="text/x-mustache-template">
+{{ base_url }}
+</script>
 {% endblock %}
 
 {% block container %}
@@ -51,7 +54,7 @@
 <script src="http://maps.google.com/maps/api/js?key=AIzaSyCL6FCIh_lcj9RPY-TZ6O08acGrffJvbq8&sensor=false"></script>
 <script src="{% static "js/jquery.masonry.min.js" %}"></script>
 <script src="{% static "js/underscore-min.js" %}"></script>
-<script src="{% static "js/backbone.js" %}"></script>
+<script src="{% static "js/backbone-min.js" %}"></script>
 <script src="{% static "js/mustache.js" %}"></script>
 <script src="{% static "js/app.js" %}"></script>
 {% endblock %}

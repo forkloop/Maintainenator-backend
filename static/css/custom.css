@@ -15,6 +15,7 @@ body {
 
 .navbar-inverse .navbar-inner {
     background: -moz-linear-gradient(center top, #1C92C8, #1982B2) repeat scroll 0 0 transparent;
+    background: -webkit-gradient(linear, center top, center bottom, from(#1C92C8), to(#1982B2));
     border: none;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4), 0 -1px 6px rgba(255, 255, 255, 0.2) inset;
 }

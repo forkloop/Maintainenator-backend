@@ -27,11 +27,9 @@ $(function() {
     var TrackingsCollection = Backbone.Collection.extend({
         model: Tracking,
 
-        //FIXME
-        //url: 'http://127.0.0.1:5000/api/v1/trackings/?limit=20&offset=20',
-
         url: function() {
-            var urlRoot = 'http://127.0.0.1:5000';
+            var urlRoot = $('#base-url').html();
+            console.log(urlRoot);
             if (this.meta) {
                 return (urlRoot + this.meta['next']);
             } else {
