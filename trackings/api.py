@@ -18,7 +18,7 @@ class PhotoResource(ModelResource):
 # `curl -u username:password localhost:5000/api/v1/trackings/[id] to fetch the tracking`.
 class TrackingResource(MultipartResource, ModelResource):
     _max_photo_num = 3
-    photos = fields.ToManyField(PhotoResource, 'photo_set', full=True)
+    photos = fields.ToManyField(PhotoResource, 'photo_set', full=True, null=True)
 
     def obj_create(self, bundle, request, **kwargs):
         # Create A tracking with ModelResource.obj_create().
