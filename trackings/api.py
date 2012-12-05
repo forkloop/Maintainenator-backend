@@ -58,3 +58,10 @@ class TrackingResource(MultipartResource, ModelResource):
         else:
             # md5 hexdigest for empty string.
             return 'd41d8cd98f00b204e9800998ecf8427e'
+
+    def dehydrate_location(self, bundle):
+        location = bundle.data['location']
+        if location:
+            return location
+        else:
+            return (('%s %sF') % (bundle.data['location'], bundle.data['building'])).strip()

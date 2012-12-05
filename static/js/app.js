@@ -142,7 +142,7 @@ $(function() {
             /* `fetch` triggers `reset` event.
              */
             allTrackings.fetch();
-            /*
+            ///*
             $(window).on('scroll', function() {
                 var triggerHeight = 0;
                 if (!window.isLoading && ($(window).scrollTop() + $(window).height() + triggerHeight > $container.height())) {
@@ -159,7 +159,7 @@ $(function() {
                     });
                 }
             });
-            */
+            //*/
         },
 
         render: function() {
