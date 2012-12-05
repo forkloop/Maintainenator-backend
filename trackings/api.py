@@ -64,4 +64,4 @@ class TrackingResource(MultipartResource, ModelResource):
         if location:
             return location
         else:
-            return (('%s %sF') % (bundle.data['location'], bundle.data['building'])).strip()
+            return (('%s %s') % (bundle.data['building'], bundle.data['room'])).strip()
