@@ -1,0 +1,84 @@
+{% load staticfiles %}
+<html>
+<head>
+<title>Maintain-e-Nator Admin</title>
+<link rel="stylesheet" href="{% static "css/styles.css" %}"/>
+</head>
+<body>
+
+<div id="content">
+	<div id="left">
+        <a href="#"><span style="font-size: 110px; line-height: 90px;">MAIN</span></a>
+		<span style="font-size: 125px; line-height: 90px;">TAIN</span>
+		<span style="font-size: 270px; line-height: 80px;">-e-</span>
+		<span style="font-size: 86px; line-height: 80px;">NATOR</span>
+		<div id="admin_menu" style="float: left; margin: 40px 0 0 20px">
+			<h2 id="admin_users">
+				<a href="auth/user/">
+                    <img src="{% static "images/users.png" %}"/>
+					Manage Users
+				</a>
+			</h2>
+			<h2 id="admin_all_trackings">
+				<a href="trackings/tracking/">
+                    <img src="{% static "images/all_tracking.png" %}"/>
+					All Trackings
+				</a>
+			</h2>
+		</div>
+	</div>
+	<div id="right">
+		<div id="top_row">
+			<a id="davis" href="trackings/tracking/?building=Davis">
+				<h1>Davis</h1>
+                <img src="{% static "images/davis.png" %}"/>
+			</a>
+			<a id="furnas" href="trackings/tracking/?building=Furnas">
+				<h1>Furnas</h1>
+                <img src="{% static "images/furnas.png" %}"/>
+			</a>
+		</div>
+		<div id="bottom-row">
+			<a id="jarvis" href="trackings/tracking/?building=Jarvis">
+				<h1>Jarvis</h1>
+                <img src="{% static "images/jarvis.png" %}"/>
+			</a>
+			<a id="ketter" href="trackings/tracking/?building=Ketter">
+				<h1>Ketter</h1>
+                <img src="{% static "images/ketter.png" %}"/>
+			</a>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#jarvis').bind('mouseover', function() {
+		$(this).css({'background-color' : '#354dff'});
+	});
+	$('#davis').bind('mouseover', function() {
+		$(this).css({'background-color' : '#354dff'});
+	});
+	$('#ketter').bind('mouseover', function() {
+		$(this).css({'background-color' : '#354dff'});
+	});
+	$('#furnas').bind('mouseover', function() {
+		$(this).css({'background-color' : '#354dff'});
+	});
+	
+	$('#jarvis').bind('mouseout', function() {
+		$(this).css({'background-color' : '#ccc'});
+	});
+	$('#davis').bind('mouseout', function() {
+		$(this).css({'background-color' : '#ccc'});
+	});
+	$('#ketter').bind('mouseout', function() {
+		$(this).css({'background-color' : '#ccc'});
+	});
+	$('#furnas').bind('mouseout', function() {
+		$(this).css({'background-color' : '#ccc'});
+	});
+});
+</script>
+</body>
+</html>
