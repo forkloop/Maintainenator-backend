@@ -62,6 +62,6 @@ class TrackingResource(MultipartResource, ModelResource):
     def dehydrate_location(self, bundle):
         location = bundle.data['location']
         if location:
-            return location
+            return location.capitalize()
         else:
             return bundle.data['building'].capitalize()

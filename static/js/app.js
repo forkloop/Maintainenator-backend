@@ -98,7 +98,13 @@ $(function() {
         //default impl is a no-op. good convenion is return this to enable chained calls.
         render: function() {
             //TODO Use Mustache.render() ?
-            this.$el.html(Mustache.to_html(this.template, this.model.toJSON()));
+            var json = this.model.toJSON();
+            // ONLY use the first photo to reduce index page overhead.
+            if (json.photos.length) {
+                json.photos = json.photos[0];
+            }
+            this.$el.html(Mustache.to_html(this.template, json));
+            //this.$el.html(Mustache.to_html(this.template, this.model.toJSON()));
             return this;
         },
 
